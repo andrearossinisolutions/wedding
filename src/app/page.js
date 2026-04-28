@@ -190,7 +190,7 @@ export default function Home() {
         id: "final-story",
         videoId: "ejVEg8Xoqyc",
         videoStart: 584,
-        videoEnd: 600,
+        videoEnd: 603,
         slides: [
           {
             kicker: "Finale",
