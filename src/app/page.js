@@ -26,6 +26,12 @@ export default function Home() {
               "Cerimonia e pranzo nella stessa giornata",
               "Aggiorneremo presto gli orari e i dettagli logistici",
             ],
+            timeline: [
+              { time: "TBD", label: "Celebrazione civile al Comune di Cervignano d'Adda" },
+              { time: "Subito dopo", label: "Trasferimento verso Agriturismo Isolone" },
+              { time: "Pranzo", label: "Ricevimento e festeggiamenti" },
+              { time: "Pomeriggio", label: "Torta, brindisi e saluti finali" },
+            ],
           },
         ],
       },
@@ -233,6 +239,18 @@ export default function Home() {
                         <li key={detail}>{detail}</li>
                       ))}
                     </ul>
+                    {slide.timeline ? (
+                      <div className="story-timeline-wrap">
+                        <div className="story-timeline">
+                          {slide.timeline.map((step) => (
+                            <div key={`${step.time}-${step.label}`} className="story-timeline-step">
+                              <span className="story-time-pill">{step.time}</span>
+                              <p>{step.label}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ) : null}
                   </article>
                 ))}
               </div>
@@ -245,69 +263,56 @@ export default function Home() {
         className="bg-[#f7f0e6] text-[#2d2219] px-6 py-18 sm:px-8"
         id="dettagli-evento"
       >
-        <div className="mx-auto grid w-full max-w-6xl gap-8 lg:grid-cols-2">
-          <article>
-            <p className="mb-3 inline-block border-b border-[#5f4f4073] text-xs tracking-[0.08em] uppercase text-[#5f4f40]">
-              Programma
-            </p>
-            <h2 className="mb-5 text-3xl font-semibold sm:text-4xl">Timeline della Giornata</h2>
-            <ul className="grid gap-4">
-              <li className="rounded-lg border border-[#59453426] bg-white/70 p-4">
-                <span className="mb-2 inline-block rounded-full bg-[#5945341a] px-2.5 py-1 text-xs uppercase">
-                  TBD
-                </span>
-                <p className="text-lg">Celebrazione civile al Comune di Cervignano d&apos;Adda</p>
-              </li>
-              <li className="rounded-lg border border-[#59453426] bg-white/70 p-4">
-                <span className="mb-2 inline-block rounded-full bg-[#5945341a] px-2.5 py-1 text-xs uppercase">
-                  Subito dopo
-                </span>
-                <p className="text-lg">Trasferimento verso Agriturismo Isolone</p>
-              </li>
-              <li className="rounded-lg border border-[#59453426] bg-white/70 p-4">
-                <span className="mb-2 inline-block rounded-full bg-[#5945341a] px-2.5 py-1 text-xs uppercase">
-                  Pranzo
-                </span>
-                <p className="text-lg">Ricevimento e festeggiamenti</p>
-              </li>
-              <li className="rounded-lg border border-[#59453426] bg-white/70 p-4">
-                <span className="mb-2 inline-block rounded-full bg-[#5945341a] px-2.5 py-1 text-xs uppercase">
-                  Pomeriggio
-                </span>
-                <p className="text-lg">Torta, brindisi e saluti finali</p>
-              </li>
-            </ul>
-          </article>
-
+        <div className="mx-auto w-full max-w-6xl">
           <article>
             <p className="mb-3 inline-block border-b border-[#5f4f4073] text-xs tracking-[0.08em] uppercase text-[#5f4f40]">
               Luoghi
             </p>
-            <h2 className="mb-5 text-3xl font-semibold sm:text-4xl">Mappe e Indicazioni</h2>
-            <div className="grid gap-4">
-              <div className="rounded-lg border border-[#59453426] bg-white/80 p-4">
-                <h3 className="mb-2 text-xl font-medium">Comune di Cervignano d&apos;Adda</h3>
-                <p className="mb-3 text-lg">Piazza del Municipio, 1, 26832 Cervignano d&apos;Adda (LO)</p>
-                <a
-                  className="font-semibold text-[#594534] underline-offset-2 hover:underline"
-                  href="https://www.google.com/maps/search/?api=1&query=Comune%20di%20Cervignano%20d%27Adda"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Apri su Google Maps
-                </a>
+            <h2 className="mb-6 text-3xl font-semibold sm:text-4xl">Mappe e Indicazioni</h2>
+            <div className="grid gap-5 lg:grid-cols-2">
+              <div className="overflow-hidden rounded-xl border border-[#59453426] bg-white/85 shadow-[0_10px_30px_rgba(89,69,52,0.08)]">
+                <iframe
+                  className="h-56 w-full border-0"
+                  src="https://www.google.com/maps?q=Comune+di+Cervignano+d%27Adda&output=embed"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Mappa Comune di Cervignano d'Adda"
+                />
+                <div className="p-4">
+                  <h3 className="mb-2 text-xl font-medium">Comune di Cervignano d&apos;Adda</h3>
+                  <p className="mb-3 text-base sm:text-lg">
+                    Piazza del Municipio, 1, 26832 Cervignano d&apos;Adda (LO)
+                  </p>
+                  <a
+                    className="font-semibold text-[#594534] underline-offset-2 hover:underline"
+                    href="https://www.google.com/maps/search/?api=1&query=Comune%20di%20Cervignano%20d%27Adda"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Apri su Google Maps
+                  </a>
+                </div>
               </div>
-              <div className="rounded-lg border border-[#59453426] bg-white/80 p-4">
-                <h3 className="mb-2 text-xl font-medium">Agriturismo Isolone</h3>
-                <p className="mb-3 text-lg">Location pranzo e ricevimento</p>
-                <a
-                  className="font-semibold text-[#594534] underline-offset-2 hover:underline"
-                  href="https://www.google.com/maps/search/?api=1&query=Agriturismo%20Isolone"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Apri su Google Maps
-                </a>
+              <div className="overflow-hidden rounded-xl border border-[#59453426] bg-white/85 shadow-[0_10px_30px_rgba(89,69,52,0.08)]">
+                <iframe
+                  className="h-56 w-full border-0"
+                  src="https://www.google.com/maps?q=Agriturismo+Isolone&output=embed"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Mappa Agriturismo Isolone"
+                />
+                <div className="p-4">
+                  <h3 className="mb-2 text-xl font-medium">Agriturismo Isolone</h3>
+                  <p className="mb-3 text-base sm:text-lg">Location pranzo e ricevimento</p>
+                  <a
+                    className="font-semibold text-[#594534] underline-offset-2 hover:underline"
+                    href="https://www.google.com/maps/search/?api=1&query=Agriturismo%20Isolone"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Apri su Google Maps
+                  </a>
+                </div>
               </div>
             </div>
           </article>
