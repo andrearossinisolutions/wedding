@@ -21,10 +21,10 @@ export default function Home() {
             kicker: "Un Giorno Speciale",
             title: "La Nostra Promessa",
             description:
-              "Sarà una giornata pensata per stare insieme alle persone che amiamo di piu, tra emozioni sincere e momenti da ricordare.",
+              "Sarà una giornata pensata per stare insieme alle persone che amiamo di piu', tra emozioni sincere e momenti da ricordare.",
             details: [
               "Cerimonia e pranzo nella stessa giornata",
-              "Aggiorneremo presto tutti gli orari ufficiali",
+              "Aggiorneremo presto gli orari e i dettagli logistici",
             ],
           },
         ],
@@ -38,7 +38,10 @@ export default function Home() {
             title: "Comune di Cervignano d'Adda",
             description:
               "La celebrazione civile si svolgerà presso il Comune di Cervignano d'Adda, in un momento intimo e significativo.",
-            details: ["Orario ancora da definire", "Seguiranno indicazioni operative"],
+            details: [
+              "Indirizzo: Piazza del Municipio, 1, 26832 Cervignano d'Adda (LO)",
+              "In mattinata, orario ancora da definire",
+            ],
           },
           {
             kicker: "Dettagli",
@@ -70,7 +73,7 @@ export default function Home() {
             kicker: "Atmosfera",
             title: "Convivialita e Festa",
             description:
-              "Ci aspetta un pranzo in un ambiente rustico ed elegante, con tempi rilassati per brindare, stare insieme e goderci la giornata.",
+              "Ci aspetta un pranzo in un ambiente rustico ed affascinante, con tempi rilassati per brindare, stare insieme e goderci la giornata.",
             details: [
               "Spazi interni ed esterni a disposizione",
               "Momenti dedicati a foto e saluti",
@@ -90,18 +93,17 @@ export default function Home() {
             details: [
               "Menu con opzioni anche vegetariane",
               "Ampio parcheggio disponibile",
-              "Dress code: elegante informale",
             ],
           },
           {
-            kicker: "Mock Info",
+            kicker: "Dettagli Ospiti",
             title: "Indicazioni Ospiti",
             description:
               "Questa sezione verra rifinita con le ultime informazioni utili: eventuali intolleranze, dettagli sugli spostamenti e orario previsto di conclusione.",
             details: [
-              "Conferma presenza (RSVP) entro data da definire",
-              "Possibilita di segnalare esigenze alimentari",
-              "Contatto organizzativo: +39 000 000 0000",
+              "Conferma presenza (RSVP) il prima possibile",
+              "Segnalateci qualsiasi esigenza alimentare",
+              "Contatti organizzativi: 347 2181 696 / 392 178 2426",
             ],
           },
         ],
