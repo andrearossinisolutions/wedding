@@ -93,13 +93,15 @@ body {
 .one-slide {
   position: absolute;
   opacity: 0;
+  filter: blur(6px);
   transform: translateY(14px);
   pointer-events: none;
-  transition: opacity 320ms ease, transform 320ms ease;
+  transition: opacity 420ms ease, transform 420ms ease, filter 420ms ease;
 }
 
 .one-slide.is-active {
   opacity: 1;
+  filter: blur(0);
   transform: translateY(0);
 }
 
@@ -133,8 +135,118 @@ body {
   font-size: clamp(0.98rem, 2vw, 1.1rem);
 }
 
+.story-progress {
+  position: fixed;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.story-progress-dot {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.3);
+  transition: transform 220ms ease, background-color 220ms ease;
+}
+
+.story-progress-dot.is-active {
+  transform: scale(1.2);
+  background: #fff;
+}
+
+.event-info-band {
+  background: #f7f0e6;
+  color: #2d2219;
+  padding: 4.5rem 1.5rem 5rem;
+}
+
+.event-info-shell {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.event-info-shell article h2 {
+  font-size: clamp(1.6rem, 3vw, 2.35rem);
+  margin-bottom: 1.25rem;
+}
+
+.info-kicker {
+  color: #5f4f40;
+  border-bottom-color: rgba(95, 79, 64, 0.45);
+}
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.95rem;
+}
+
+.timeline li {
+  display: grid;
+  gap: 0.45rem;
+  padding: 0.9rem 1rem;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(89, 69, 52, 0.15);
+  border-radius: 8px;
+}
+
+.time-pill {
+  width: fit-content;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(89, 69, 52, 0.1);
+}
+
+.place-card-list {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.place-card {
+  padding: 1rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(89, 69, 52, 0.15);
+}
+
+.place-card h3 {
+  margin: 0 0 0.45rem;
+  font-size: 1.1rem;
+}
+
+.place-card p {
+  margin: 0 0 0.7rem;
+}
+
+.place-card a {
+  color: #594534;
+  font-weight: 600;
+}
+
 @media (max-width: 920px) {
   .story-sticky {
     background-attachment: scroll;
+  }
+
+  .story-progress {
+    right: 0.55rem;
+  }
+
+  .event-info-shell {
+    grid-template-columns: 1fr;
   }
 }

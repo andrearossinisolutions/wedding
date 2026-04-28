@@ -132,10 +132,13 @@ export default function Home() {
   const [activeSlides, setActiveSlides] = useState(() =>
     Object.fromEntries(sections.map((section) => [section.id, 0])),
   );
+  const [activeSectionId, setActiveSectionId] = useState(sections[0]?.id ?? "");
 
   useEffect(() => {
     const handleScroll = () => {
       const nextActive = {};
+      let bestSectionId = sections[0]?.id ?? "";
+      let bestVisibility = -1;
 
       sections.forEach((section) => {
         const element = document.getElementById(section.id);
@@ -151,9 +154,18 @@ export default function Home() {
           0.9999,
         );
         nextActive[section.id] = Math.floor(rawProgress * section.slides.length);
+
+        const visiblePx =
+          Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
+        const visibility = Math.max(visiblePx, 0);
+        if (visibility > bestVisibility) {
+          bestVisibility = visibility;
+          bestSectionId = section.id;
+        }
       });
 
       setActiveSlides(nextActive);
+      setActiveSectionId(bestSectionId);
     };
 
     handleScroll();
@@ -168,6 +180,16 @@ export default function Home() {
 
   return (
     <main>
+      <nav className="story-progress" aria-label="Progressione invito">
+        {sections.map((section) => (
+          <a
+            key={`progress-${section.id}`}
+            href={`#${section.id}`}
+            className={`story-progress-dot ${activeSectionId === section.id ? "is-active" : ""}`}
+            aria-label={`Vai a ${section.id}`}
+          />
+        ))}
+      </nav>
       {sections.map((section) => {
         const activeIndex = activeSlides[section.id] ?? 0;
         return (
@@ -218,6 +240,79 @@ export default function Home() {
           </section>
         );
       })}
+
+      <section
+        className="bg-[#f7f0e6] text-[#2d2219] px-6 py-18 sm:px-8"
+        id="dettagli-evento"
+      >
+        <div className="mx-auto grid w-full max-w-6xl gap-8 lg:grid-cols-2">
+          <article>
+            <p className="mb-3 inline-block border-b border-[#5f4f4073] text-xs tracking-[0.08em] uppercase text-[#5f4f40]">
+              Programma
+            </p>
+            <h2 className="mb-5 text-3xl font-semibold sm:text-4xl">Timeline della Giornata</h2>
+            <ul className="grid gap-4">
+              <li className="rounded-lg border border-[#59453426] bg-white/70 p-4">
+                <span className="mb-2 inline-block rounded-full bg-[#5945341a] px-2.5 py-1 text-xs uppercase">
+                  TBD
+                </span>
+                <p className="text-lg">Celebrazione civile al Comune di Cervignano d&apos;Adda</p>
+              </li>
+              <li className="rounded-lg border border-[#59453426] bg-white/70 p-4">
+                <span className="mb-2 inline-block rounded-full bg-[#5945341a] px-2.5 py-1 text-xs uppercase">
+                  Subito dopo
+                </span>
+                <p className="text-lg">Trasferimento verso Agriturismo Isolone</p>
+              </li>
+              <li className="rounded-lg border border-[#59453426] bg-white/70 p-4">
+                <span className="mb-2 inline-block rounded-full bg-[#5945341a] px-2.5 py-1 text-xs uppercase">
+                  Pranzo
+                </span>
+                <p className="text-lg">Ricevimento e festeggiamenti</p>
+              </li>
+              <li className="rounded-lg border border-[#59453426] bg-white/70 p-4">
+                <span className="mb-2 inline-block rounded-full bg-[#5945341a] px-2.5 py-1 text-xs uppercase">
+                  Pomeriggio
+                </span>
+                <p className="text-lg">Torta, brindisi e saluti finali</p>
+              </li>
+            </ul>
+          </article>
+
+          <article>
+            <p className="mb-3 inline-block border-b border-[#5f4f4073] text-xs tracking-[0.08em] uppercase text-[#5f4f40]">
+              Luoghi
+            </p>
+            <h2 className="mb-5 text-3xl font-semibold sm:text-4xl">Mappe e Indicazioni</h2>
+            <div className="grid gap-4">
+              <div className="rounded-lg border border-[#59453426] bg-white/80 p-4">
+                <h3 className="mb-2 text-xl font-medium">Comune di Cervignano d&apos;Adda</h3>
+                <p className="mb-3 text-lg">Piazza del Municipio, 1, 26832 Cervignano d&apos;Adda (LO)</p>
+                <a
+                  className="font-semibold text-[#594534] underline-offset-2 hover:underline"
+                  href="https://www.google.com/maps/search/?api=1&query=Comune%20di%20Cervignano%20d%27Adda"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Apri su Google Maps
+                </a>
+              </div>
+              <div className="rounded-lg border border-[#59453426] bg-white/80 p-4">
+                <h3 className="mb-2 text-xl font-medium">Agriturismo Isolone</h3>
+                <p className="mb-3 text-lg">Location pranzo e ricevimento</p>
+                <a
+                  className="font-semibold text-[#594534] underline-offset-2 hover:underline"
+                  href="https://www.google.com/maps/search/?api=1&query=Agriturismo%20Isolone"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Apri su Google Maps
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
     </main>
   );
 }
