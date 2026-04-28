@@ -1,6 +1,84 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+
+function VideoBackground({ videoId, start, end }) {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    let player;
+    let loopTimer;
+    let canceled = false;
+
+    const setupPlayer = () => {
+      if (canceled || !containerRef.current || !window.YT?.Player) return;
+
+      player = new window.YT.Player(containerRef.current, {
+        videoId,
+        playerVars: {
+          autoplay: 1,
+          controls: 0,
+          disablekb: 1,
+          fs: 0,
+          iv_load_policy: 3,
+          loop: 1,
+          modestbranding: 1,
+          mute: 1,
+          playsinline: 1,
+          rel: 0,
+          start,
+          end,
+          playlist: videoId,
+        },
+        events: {
+          onReady: (event) => {
+            event.target.mute();
+            event.target.playVideo();
+
+            loopTimer = window.setInterval(() => {
+              const current = event.target.getCurrentTime?.();
+              if (typeof current === "number" && current >= end - 0.15) {
+                event.target.seekTo(start, true);
+                event.target.playVideo();
+              }
+            }, 200);
+          },
+          onStateChange: (event) => {
+            if (event.data === window.YT.PlayerState.ENDED) {
+              event.target.seekTo(start, true);
+              event.target.playVideo();
+            }
+          },
+        },
+      });
+    };
+
+    if (window.YT?.Player) {
+      setupPlayer();
+    } else {
+      const previous = window.onYouTubeIframeAPIReady;
+      window.onYouTubeIframeAPIReady = () => {
+        previous?.();
+        setupPlayer();
+      };
+
+      if (!document.getElementById("youtube-iframe-api")) {
+        const script = document.createElement("script");
+        script.id = "youtube-iframe-api";
+        script.src = "https://www.youtube.com/iframe_api";
+        document.body.appendChild(script);
+      }
+    }
+
+    return () => {
+      canceled = true;
+      if (loopTimer) window.clearInterval(loopTimer);
+      if (player?.destroy) player.destroy();
+    };
+  }, [videoId, start, end]);
+
+  return <div className="story-video-bg" ref={containerRef} aria-hidden="true" />;
+}
 
 export default function Home() {
   const sections = useMemo(
@@ -110,14 +188,15 @@ export default function Home() {
       },
       {
         id: "final-story",
-        video:
-          "https://www.youtube-nocookie.com/embed/ejVEg8Xoqyc?autoplay=1&mute=1&controls=0&disablekb=1&fs=0&loop=1&modestbranding=1&playsinline=1&rel=0&iv_load_policy=3&playlist=ejVEg8Xoqyc&start=584",
+        videoId: "ejVEg8Xoqyc",
+        videoStart: 584,
+        videoEnd: 600,
         slides: [
           {
             kicker: "Finale",
             title: "Ti Aspettiamo",
             description:
-              "Grazie per condividere con noi questo giorno speciale. Non vediamo l'ora di festeggiare insieme a te.",
+              "Grazie per condividere con noi questo giorno speciale. Non vediamo l'ora di arrivare insieme a te.",
             details: [
               "RSVP e dettagli finali in aggiornamento",
               "A presto, con affetto",
@@ -176,22 +255,19 @@ export default function Home() {
             style={{ height: `${section.slides.length * 100}vh` }}
           >
             <div
-              className={`story-sticky ${section.video ? "has-video" : ""}`}
+              className={`story-sticky ${section.videoId ? "has-video" : ""}`}
               style={
                 section.background
                   ? { backgroundImage: `url("${section.background}")` }
                   : undefined
               }
             >
-              {section.video ? (
+              {section.videoId ? (
                 <div className="story-video-layer" aria-hidden="true">
-                  <iframe
-                    className="story-video-bg"
-                    src={section.video}
-                    title="Wedding Story Background Video"
-                    allow="autoplay; encrypted-media; picture-in-picture"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    tabIndex={-1}
+                  <VideoBackground
+                    videoId={section.videoId}
+                    start={section.videoStart}
+                    end={section.videoEnd}
                   />
                 </div>
               ) : null}
