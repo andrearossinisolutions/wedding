@@ -3,32 +3,43 @@ export default function Home() {
     {
       id: "evento",
       kicker: "Save The Date",
-      title: "Chiara & Luca",
+      title: "Il Nostro Matrimonio",
       description:
-        "Siamo felici di invitarti al nostro matrimonio. Una giornata speciale da vivere insieme tra emozioni, sorrisi e festa.",
-      details: ["Sabato 12 Settembre 2026", "Arrivo ospiti dalle ore 10:30"],
+        "Con grande gioia ti invitiamo a condividere con noi una giornata speciale di festa, affetto e felicita.",
+      details: ["Data in aggiornamento", "Programma completo in arrivo"],
       background:
         "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1800&q=80",
     },
     {
       id: "celebrazione",
       kicker: "Celebrazione",
-      title: "Abbazia di San Michele",
+      title: "Comune di Cervignano d'Adda",
       description:
-        "La cerimonia si terrà in una cornice storica immersa nel verde, con inizio alle ore 11:00.",
-      details: ["Via dell'Abbazia 15, Verona", "Parcheggio disponibile in loco"],
-      background:
-        "https://images.unsplash.com/photo-1504198458649-3128b932f49b?auto=format&fit=crop&w=1800&q=80",
+        "La celebrazione civile si svolgera presso il Comune di Cervignano d'Adda.",
+      details: ["Orario ancora da definire", "Seguiranno indicazioni operative"],
+      background: "/comune.jpg",
     },
     {
       id: "pranzo",
-      kicker: "Ricevimento",
-      title: "Villa Le Rose",
+      kicker: "Pranzo",
+      title: "Agriturismo Isolone",
       description:
-        "Dopo la celebrazione ti aspettiamo per il pranzo nuziale e i festeggiamenti in villa.",
-      details: ["Inizio ricevimento ore 13:30", "Via delle Rose 8, Verona"],
-      background:
-        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1800&q=80",
+        "Dopo la celebrazione ci sposteremo all'Agriturismo Isolone per il pranzo e i festeggiamenti.",
+      details: ["Accoglienza subito dopo la cerimonia", "Dettagli logistici in aggiornamento"],
+      background: "/isolone-1.jpg",
+    },
+    {
+      id: "ricevimento-info",
+      kicker: "Info Ricevimento",
+      title: "Un Pomeriggio Insieme",
+      description:
+        "Dopo il pranzo continueremo i festeggiamenti con torta, brindisi e musica in agriturismo.",
+      details: [
+        "Menu con opzioni anche vegetariane",
+        "Ampio parcheggio disponibile",
+        "Dress code: elegante informale",
+      ],
+      background: "/isolone-2.jpg",
     },
   ];
 
