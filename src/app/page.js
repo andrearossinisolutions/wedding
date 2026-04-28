@@ -118,12 +118,13 @@ export default function Home() {
         id: "final-story",
         videoId: "ejVEg8Xoqyc",
         videoStart: 584,
+        hold: 1.8,
         slides: [
           {
             kicker: "Finale",
             title: "Ti Aspettiamo",
             description:
-              "Grazie per condividere con noi questo giorno speciale. Non vediamo l'ora di arrivare insieme a te.",
+              "Grazie per condividere con noi questo giorno speciale. Non vediamo l'ora di arrivare e festeggiare insieme a te.",
             details: [
               "RSVP e dettagli finali in aggiornamento",
               "A presto, con affetto",
@@ -203,7 +204,7 @@ export default function Home() {
             key={section.id}
             id={section.id}
             className="story-section"
-            style={{ height: `${section.slides.length * 100}svh` }}
+            style={{ height: `${section.slides.length * 100 * (section.hold ?? 1)}svh` }}
           >
             <div
               className={`story-sticky ${section.videoId ? "has-video has-video-iframe" : ""}`}
@@ -296,14 +297,16 @@ export default function Home() {
               <div className="overflow-hidden rounded-xl border border-[#59453426] bg-white/85 shadow-[0_10px_30px_rgba(89,69,52,0.08)]">
                 <iframe
                   className="h-56 w-full border-0"
-                  src="https://www.google.com/maps?q=Agriturismo+Isolone&output=embed"
+                  src="https://www.google.com/maps?q=Agriturismo+Isolone&z=12&output=embed"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   title="Mappa Agriturismo Isolone"
                 />
                 <div className="p-4">
                   <h3 className="mb-2 text-xl font-medium">Agriturismo Isolone</h3>
-                  <p className="mb-3 text-base sm:text-lg">Location pranzo e ricevimento</p>
+                  <p className="mb-3 text-base sm:text-lg">
+                    Cascina San Benedetto, 26865 San Rocco al Porto (LO)
+                  </p>
                   <a
                     className="font-semibold text-[#594534] underline-offset-2 hover:underline"
                     href="https://www.google.com/maps/search/?api=1&query=Agriturismo%20Isolone"
