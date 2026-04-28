@@ -224,9 +224,10 @@ export default function Home() {
         }
 
         const rect = element.getBoundingClientRect();
-        const sectionHeight = window.innerHeight * section.slides.length;
+        const transitions = Math.max(section.slides.length - 1, 1);
+        const stickyScrollSpan = window.innerHeight * transitions;
         const sectionTop = rect.top;
-        const rawProgress = Math.min(Math.max(-sectionTop / sectionHeight, 0), 0.9999);
+        const rawProgress = Math.min(Math.max(-sectionTop / stickyScrollSpan, 0), 0.9999);
         nextActive[section.id] = Math.floor(rawProgress * section.slides.length);
       });
 
