@@ -8,7 +8,7 @@ export default function Home() {
       {
         id: "evento",
         background:
-          "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1800&q=80",
+          "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1800&q=80",
         slides: [
           {
             kicker: "Save The Date",
