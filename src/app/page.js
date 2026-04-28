@@ -224,8 +224,7 @@ export default function Home() {
         }
 
         const rect = element.getBoundingClientRect();
-        const transitions = Math.max(section.slides.length - 1, 1);
-        const stickyScrollSpan = window.innerHeight * transitions;
+        const stickyScrollSpan = Math.max(rect.height - window.innerHeight, 1);
         const sectionTop = rect.top;
         const rawProgress = Math.min(Math.max(-sectionTop / stickyScrollSpan, 0), 0.9999);
         nextActive[section.id] = Math.floor(rawProgress * section.slides.length);
@@ -253,7 +252,7 @@ export default function Home() {
             key={section.id}
             id={section.id}
             className="story-section"
-            style={{ height: `${section.slides.length * 100}vh` }}
+            style={{ height: `${section.slides.length * 100}svh` }}
           >
             <div
               className={`story-sticky ${section.videoId ? "has-video" : ""}`}
