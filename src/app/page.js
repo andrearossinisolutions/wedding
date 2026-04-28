@@ -320,6 +320,12 @@ export default function Home() {
             </div>
           </article>
         </div>
+        <div className="mx-auto mt-14 w-full max-w-3xl text-center">
+          <p className="text-base sm:text-lg">
+            Per informazioni sui servizi e i pacchetti disponibili, non esitare a contattarci.<br />
+            347 2181 696 / 392 178 2426
+          </p>
+        </div>
       </section>
     </main>
   );
