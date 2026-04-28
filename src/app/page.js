@@ -1,65 +1,60 @@
-import Image from "next/image";
-
 export default function Home() {
+  const sections = [
+    {
+      id: "evento",
+      kicker: "Save The Date",
+      title: "Chiara & Luca",
+      description:
+        "Siamo felici di invitarti al nostro matrimonio. Una giornata speciale da vivere insieme tra emozioni, sorrisi e festa.",
+      details: ["Sabato 12 Settembre 2026", "Arrivo ospiti dalle ore 10:30"],
+      background:
+        "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1800&q=80",
+    },
+    {
+      id: "celebrazione",
+      kicker: "Celebrazione",
+      title: "Abbazia di San Michele",
+      description:
+        "La cerimonia si terrà in una cornice storica immersa nel verde, con inizio alle ore 11:00.",
+      details: ["Via dell'Abbazia 15, Verona", "Parcheggio disponibile in loco"],
+      background:
+        "https://images.unsplash.com/photo-1504198458649-3128b932f49b?auto=format&fit=crop&w=1800&q=80",
+    },
+    {
+      id: "pranzo",
+      kicker: "Ricevimento",
+      title: "Villa Le Rose",
+      description:
+        "Dopo la celebrazione ti aspettiamo per il pranzo nuziale e i festeggiamenti in villa.",
+      details: ["Inizio ricevimento ore 13:30", "Via delle Rose 8, Verona"],
+      background:
+        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1800&q=80",
+    },
+  ];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <main>
+      {sections.map((section) => (
+        <section
+          key={section.id}
+          id={section.id}
+          className="parallax-section"
+          style={{ backgroundImage: `url("${section.background}")` }}
+        >
+          <div className="parallax-overlay">
+            <article className="content-shell">
+              <p className="kicker">{section.kicker}</p>
+              <h1>{section.title}</h1>
+              <p>{section.description}</p>
+              <ul>
+                {section.details.map((detail) => (
+                  <li key={detail}>{detail}</li>
+                ))}
+              </ul>
+            </article>
+          </div>
+        </section>
+      ))}
+    </main>
   );
 }
