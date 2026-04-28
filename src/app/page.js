@@ -108,6 +108,23 @@ export default function Home() {
           },
         ],
       },
+      {
+        id: "final-story",
+        video:
+          "https://www.youtube-nocookie.com/embed/ejVEg8Xoqyc?autoplay=1&mute=1&controls=0&disablekb=1&fs=0&loop=1&modestbranding=1&playsinline=1&rel=0&iv_load_policy=3&playlist=ejVEg8Xoqyc&start=584",
+        slides: [
+          {
+            kicker: "Finale",
+            title: "Ti Aspettiamo",
+            description:
+              "Grazie per condividere con noi questo giorno speciale. Non vediamo l'ora di festeggiare insieme a te.",
+            details: [
+              "RSVP e dettagli finali in aggiornamento",
+              "A presto, con affetto",
+            ],
+          },
+        ],
+      },
     ],
     [],
   );
@@ -159,9 +176,25 @@ export default function Home() {
             style={{ height: `${section.slides.length * 100}vh` }}
           >
             <div
-              className="story-sticky"
-              style={{ backgroundImage: `url("${section.background}")` }}
+              className={`story-sticky ${section.video ? "has-video" : ""}`}
+              style={
+                section.background
+                  ? { backgroundImage: `url("${section.background}")` }
+                  : undefined
+              }
             >
+              {section.video ? (
+                <div className="story-video-layer" aria-hidden="true">
+                  <iframe
+                    className="story-video-bg"
+                    src={section.video}
+                    title="Wedding Story Background Video"
+                    allow="autoplay; encrypted-media; picture-in-picture"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    tabIndex={-1}
+                  />
+                </div>
+              ) : null}
               <div className="parallax-overlay">
                 {section.slides.map((slide, index) => (
                   <article
