@@ -9,9 +9,6 @@ jobs:
   deploy-frontend:
     runs-on: [self-hosted, linux, x64]
 
-    env:
-      DEPLOY_DIR: /var/www/wedding
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -30,5 +27,4 @@ jobs:
 
       - name: Deploy to Apache web root
         run: |
-          mkdir -p "$DEPLOY_DIR"
-          rsync -av --delete out/ "$DEPLOY_DIR"/
+          sudo /usr/local/bin/wedding-deploy-dynamic-wedding "$GITHUB_WORKSPACE/out"
