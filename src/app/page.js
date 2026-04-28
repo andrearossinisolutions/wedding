@@ -1,84 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
-
-function VideoBackground({ videoId, start, end }) {
-  const containerRef = useRef(null);
-
-  useEffect(() => {
-    let player;
-    let loopTimer;
-    let canceled = false;
-
-    const setupPlayer = () => {
-      if (canceled || !containerRef.current || !window.YT?.Player) return;
-
-      player = new window.YT.Player(containerRef.current, {
-        videoId,
-        playerVars: {
-          autoplay: 1,
-          controls: 0,
-          disablekb: 1,
-          fs: 0,
-          iv_load_policy: 3,
-          loop: 1,
-          modestbranding: 1,
-          mute: 1,
-          playsinline: 1,
-          rel: 0,
-          start,
-          end,
-          playlist: videoId,
-        },
-        events: {
-          onReady: (event) => {
-            event.target.mute();
-            event.target.playVideo();
-
-            loopTimer = window.setInterval(() => {
-              const current = event.target.getCurrentTime?.();
-              if (typeof current === "number" && current >= end - 0.15) {
-                event.target.seekTo(start, true);
-                event.target.playVideo();
-              }
-            }, 200);
-          },
-          onStateChange: (event) => {
-            if (event.data === window.YT.PlayerState.ENDED) {
-              event.target.seekTo(start, true);
-              event.target.playVideo();
-            }
-          },
-        },
-      });
-    };
-
-    if (window.YT?.Player) {
-      setupPlayer();
-    } else {
-      const previous = window.onYouTubeIframeAPIReady;
-      window.onYouTubeIframeAPIReady = () => {
-        previous?.();
-        setupPlayer();
-      };
-
-      if (!document.getElementById("youtube-iframe-api")) {
-        const script = document.createElement("script");
-        script.id = "youtube-iframe-api";
-        script.src = "https://www.youtube.com/iframe_api";
-        document.body.appendChild(script);
-      }
-    }
-
-    return () => {
-      canceled = true;
-      if (loopTimer) window.clearInterval(loopTimer);
-      if (player?.destroy) player.destroy();
-    };
-  }, [videoId, start, end]);
-
-  return <div className="story-video-bg" ref={containerRef} aria-hidden="true" />;
-}
+import { useEffect, useMemo, useState } from "react";
 
 export default function Home() {
   const sections = useMemo(
@@ -190,7 +112,6 @@ export default function Home() {
         id: "final-story",
         videoId: "ejVEg8Xoqyc",
         videoStart: 584,
-        videoEnd: 603,
         slides: [
           {
             kicker: "Finale",
@@ -224,9 +145,11 @@ export default function Home() {
         }
 
         const rect = element.getBoundingClientRect();
-        const stickyScrollSpan = Math.max(rect.height - window.innerHeight, 1);
-        const sectionTop = rect.top;
-        const rawProgress = Math.min(Math.max(-sectionTop / stickyScrollSpan, 0), 0.9999);
+        const viewportCenter = window.innerHeight * 0.5;
+        const rawProgress = Math.min(
+          Math.max((viewportCenter - rect.top) / Math.max(rect.height, 1), 0),
+          0.9999,
+        );
         nextActive[section.id] = Math.floor(rawProgress * section.slides.length);
       });
 
@@ -255,7 +178,7 @@ export default function Home() {
             style={{ height: `${section.slides.length * 100}svh` }}
           >
             <div
-              className={`story-sticky ${section.videoId ? "has-video" : ""}`}
+              className={`story-sticky ${section.videoId ? "has-video has-video-iframe" : ""}`}
               style={
                 section.background
                   ? { backgroundImage: `url("${section.background}")` }
@@ -264,10 +187,13 @@ export default function Home() {
             >
               {section.videoId ? (
                 <div className="story-video-layer" aria-hidden="true">
-                  <VideoBackground
-                    videoId={section.videoId}
-                    start={section.videoStart}
-                    end={section.videoEnd}
+                  <iframe
+                    className="story-video-bg-frame"
+                    src={`https://www.youtube-nocookie.com/embed/${section.videoId}?autoplay=1&mute=1&controls=0&disablekb=1&fs=0&loop=1&modestbranding=1&playsinline=1&rel=0&iv_load_policy=3&playlist=${section.videoId}&start=${section.videoStart}`}
+                    title="Wedding Story Background Video"
+                    allow="autoplay; encrypted-media; picture-in-picture"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    tabIndex={-1}
                   />
                 </div>
               ) : null}
