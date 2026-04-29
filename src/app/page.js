@@ -207,6 +207,13 @@ export default function Home() {
 
       setActiveSlides(nextActive);
       setActiveSectionId(bestSectionId);
+      const currentSection = sections.find((section) => section.id === bestSectionId);
+      if (currentSection?.videoId) {
+        setVideoBootstrapped((prev) => {
+          if (prev[currentSection.id]) return prev;
+          return { ...prev, [currentSection.id]: true };
+        });
+      }
     };
 
     handleScroll();
@@ -218,16 +225,6 @@ export default function Home() {
       window.removeEventListener("resize", handleScroll);
     };
   }, [sections]);
-
-  useEffect(() => {
-    const current = sections.find((section) => section.id === activeSectionId);
-    if (!current?.videoId) return;
-
-    setVideoBootstrapped((prev) => {
-      if (prev[current.id]) return prev;
-      return { ...prev, [current.id]: true };
-    });
-  }, [activeSectionId, sections]);
 
   return (
     <main>
@@ -256,7 +253,7 @@ export default function Home() {
             style={{ height: `${totalUnits * 100}svh` }}
           >
             <div
-              className={`story-sticky ${section.videoId ? "has-video has-video-iframe" : ""}`}
+              className={`story-sticky ${section.videoId ? "has-video has-video-iframe" : ""} ${isSectionActive ? "is-active-story" : ""}`}
               style={
                 section.background
                   ? { backgroundImage: `url("${section.background}")` }
@@ -318,8 +315,12 @@ export default function Home() {
                         <div className="story-timeline">
                           {slide.timeline
                             .slice(0, slide.timelineVisibleCount ?? slide.timeline.length)
-                            .map((step) => (
-                            <div key={`${step.time}-${step.label}`} className="story-timeline-step">
+                            .map((step, stepIndex) => (
+                            <div
+                              key={`${step.time}-${step.label}`}
+                              className="story-timeline-step"
+                              style={{ "--step-index": stepIndex }}
+                            >
                               <span className="story-time-pill">{step.time}</span>
                               <p>{step.label}</p>
                             </div>

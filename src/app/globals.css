@@ -30,10 +30,16 @@ body {
   min-height: 100svh;
   overflow: hidden;
   isolation: isolate;
-  background-size: cover;
+  background-size: 108%;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  transition: background-size 900ms ease, filter 900ms ease;
+}
+
+.story-sticky.is-active-story {
+  background-size: 102%;
+  filter: saturate(1.02);
 }
 
 .story-video-layer {
@@ -98,15 +104,19 @@ body {
   position: absolute;
   opacity: 0;
   filter: blur(6px);
-  transform: translateY(14px);
+  transform: translateY(22px) scale(0.985);
   pointer-events: none;
-  transition: opacity 420ms ease, transform 420ms ease, filter 420ms ease;
+  transition:
+    opacity 520ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 640ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 520ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform, filter;
 }
 
 .one-slide.is-active {
   opacity: 1;
   filter: blur(0);
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
 
 .content-shell h1 {
@@ -160,6 +170,10 @@ body {
   padding: 0.95rem;
   min-height: 112px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transform: translateY(16px) scale(0.98);
+  animation: timeline-step-in 500ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: calc(var(--step-index, 0) * 90ms);
 }
 
 .story-timeline-step:not(:last-child)::after {
@@ -195,6 +209,17 @@ body {
   border-radius: 999px;
   background: rgba(255, 250, 242, 0.22);
   border: 1px solid rgba(255, 250, 242, 0.42);
+}
+
+@keyframes timeline-step-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .story-progress {
