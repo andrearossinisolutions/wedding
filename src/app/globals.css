@@ -36,15 +36,20 @@ body {
   background-attachment: fixed;
 }
 
-.story-sticky.has-video {
-  background: #000;
-}
-
 .story-video-layer {
   position: absolute;
   inset: 0;
   overflow: hidden;
   z-index: 0;
+}
+
+.story-video-fallback {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 2;
 }
 
 .story-video-bg-frame {
@@ -56,6 +61,7 @@ body {
   transform: translate(-50%, -50%);
   pointer-events: none;
   border: 0;
+  z-index: 1;
 }
 
 .has-video-iframe .parallax-overlay {

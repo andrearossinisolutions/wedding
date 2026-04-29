@@ -147,6 +147,7 @@ export default function Home() {
         id: "final-story",
         videoId: "ejVEg8Xoqyc",
         videoStart: 584,
+        background: "/isolone-3.jpg",
         hold: 1.8,
         slides: [
           {
@@ -169,6 +170,8 @@ export default function Home() {
     Object.fromEntries(sections.map((section) => [section.id, 0])),
   );
   const [activeSectionId, setActiveSectionId] = useState(sections[0]?.id ?? "");
+  const [videoBootstrapped, setVideoBootstrapped] = useState({});
+  const [videoFallbackHidden, setVideoFallbackHidden] = useState({});
 
   useEffect(() => {
     const handleScroll = () => {
@@ -216,6 +219,16 @@ export default function Home() {
     };
   }, [sections]);
 
+  useEffect(() => {
+    const current = sections.find((section) => section.id === activeSectionId);
+    if (!current?.videoId) return;
+
+    setVideoBootstrapped((prev) => {
+      if (prev[current.id]) return prev;
+      return { ...prev, [current.id]: true };
+    });
+  }, [activeSectionId, sections]);
+
   return (
     <main>
       <nav className="story-progress" aria-label="Progressione invito">
@@ -231,6 +244,8 @@ export default function Home() {
       {sections.map((section) => {
         const activeIndex = activeSlides[section.id] ?? 0;
         const isSectionActive = activeSectionId === section.id;
+        const isVideoBootstrapped = Boolean(videoBootstrapped[section.id]);
+        const isFallbackHidden = Boolean(videoFallbackHidden[section.id]);
         const baseUnits = section.slides.length * (section.hold ?? 1);
         const totalUnits = baseUnits + (section.endHold ?? 0);
         return (
@@ -250,7 +265,13 @@ export default function Home() {
             >
               {section.videoId ? (
                 <div className="story-video-layer" aria-hidden="true">
-                  {isSectionActive ? (
+                  {!isFallbackHidden ? (
+                    <div
+                      className="story-video-fallback"
+                      style={{ backgroundImage: `url("${section.background}")` }}
+                    />
+                  ) : null}
+                  {isVideoBootstrapped ? (
                     <iframe
                       className="story-video-bg-frame"
                       src={`https://www.youtube-nocookie.com/embed/${section.videoId}?autoplay=1&mute=1&controls=0&disablekb=1&fs=0&loop=1&modestbranding=1&playsinline=1&rel=0&iv_load_policy=3&playlist=${section.videoId}&start=${section.videoStart}`}
@@ -258,6 +279,16 @@ export default function Home() {
                       allow="autoplay; encrypted-media; picture-in-picture"
                       referrerPolicy="strict-origin-when-cross-origin"
                       tabIndex={-1}
+                      onLoad={() =>
+                        (() => {
+                          window.setTimeout(() => {
+                            setVideoFallbackHidden((prev) => ({
+                              ...prev,
+                              [section.id]: true,
+                            }));
+                          }, 500);
+                        })()
+                      }
                     />
                   ) : null}
                 </div>
