@@ -26,6 +26,7 @@ export default function Home() {
               "Cerimonia e pranzo nella stessa giornata",
               "Aggiorneremo presto gli orari e i dettagli logistici",
             ],
+            timelineOnly: true,
             timeline: [
               { time: "TBD", label: "Celebrazione civile al Comune di Cervignano d'Adda" },
               { time: "Subito dopo", label: "Trasferimento verso Agriturismo Isolone" },
@@ -232,14 +233,20 @@ export default function Home() {
                     key={`${section.id}-${slide.title}`}
                     className={`content-shell one-slide ${index === activeIndex ? "is-active" : ""}`}
                   >
-                    <p className="kicker">{slide.kicker}</p>
-                    <h1>{slide.title}</h1>
-                    <p>{slide.description}</p>
-                    <ul>
-                      {slide.details.map((detail) => (
-                        <li key={detail}>{detail}</li>
-                      ))}
-                    </ul>
+                    {!slide.timelineOnly ? (
+                      <>
+                        <p className="kicker">{slide.kicker}</p>
+                        <h1>{slide.title}</h1>
+                        <p>{slide.description}</p>
+                        <ul>
+                          {slide.details.map((detail) => (
+                            <li key={detail}>{detail}</li>
+                          ))}
+                        </ul>
+                      </>
+                    ) : (
+                      <p className="kicker">{slide.kicker}</p>
+                    )}
                     {slide.timeline ? (
                       <div className="story-timeline-wrap">
                         <div className="story-timeline">
