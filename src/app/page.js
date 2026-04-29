@@ -172,9 +172,11 @@ export default function Home() {
   const [activeSectionId, setActiveSectionId] = useState(sections[0]?.id ?? "");
   const [videoBootstrapped, setVideoBootstrapped] = useState({});
   const [videoFallbackHidden, setVideoFallbackHidden] = useState({});
+  const [showBackToTop, setShowBackToTop] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
+      const currentScrollY = window.scrollY;
       const nextActive = {};
       let bestSectionId = sections[0]?.id ?? "";
       let bestVisibility = -1;
@@ -207,6 +209,7 @@ export default function Home() {
 
       setActiveSlides(nextActive);
       setActiveSectionId(bestSectionId);
+      setShowBackToTop(currentScrollY > 320);
       const currentSection = sections.find((section) => section.id === bestSectionId);
       if (currentSection?.videoId) {
         setVideoBootstrapped((prev) => {
@@ -228,6 +231,16 @@ export default function Home() {
 
   return (
     <main>
+      {showBackToTop ? (
+        <button
+          type="button"
+          className="back-to-top-btn"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          aria-label="Torna in alto"
+        >
+          ↑
+        </button>
+      ) : null}
       <nav className="story-progress" aria-label="Progressione invito">
         {sections.map((section) => (
           <a
