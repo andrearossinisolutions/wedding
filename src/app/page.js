@@ -16,14 +16,14 @@ export default function Home() {
             title: "Il Nostro Matrimonio",
             description:
               "Con grande gioia ti invitiamo a condividere con noi una giornata speciale di festa, affetto e felicita.",
-            details: ["Data in aggiornamento", "Programma completo in arrivo"],
+            details: ["Data: 06 giugno 2026", "Programma completo in arrivo"],
           },
           {
             kicker: "Un Giorno Speciale",
             timelineOnly: true,
             timelineVisibleCount: 1,
             timeline: [
-              { time: "TBD", label: "Celebrazione civile al Comune di Cervignano d'Adda" },
+              { time: "Da definire", label: "Celebrazione civile al Comune di Cervignano d'Adda" },
               { time: "Subito dopo", label: "Trasferimento verso Agriturismo Isolone" },
               { time: "Pranzo", label: "Ricevimento e festeggiamenti" },
               { time: "Pomeriggio", label: "Torta, brindisi e saluti finali" },
@@ -34,7 +34,7 @@ export default function Home() {
             timelineOnly: true,
             timelineVisibleCount: 2,
             timeline: [
-              { time: "TBD", label: "Celebrazione civile al Comune di Cervignano d'Adda" },
+              { time: "Da definire", label: "Celebrazione civile al Comune di Cervignano d'Adda" },
               { time: "Subito dopo", label: "Trasferimento verso Agriturismo Isolone" },
               { time: "Pranzo", label: "Ricevimento e festeggiamenti" },
               { time: "Pomeriggio", label: "Torta, brindisi e saluti finali" },
@@ -45,7 +45,7 @@ export default function Home() {
             timelineOnly: true,
             timelineVisibleCount: 3,
             timeline: [
-              { time: "TBD", label: "Celebrazione civile al Comune di Cervignano d'Adda" },
+              { time: "Da definire", label: "Celebrazione civile al Comune di Cervignano d'Adda" },
               { time: "Subito dopo", label: "Trasferimento verso Agriturismo Isolone" },
               { time: "Pranzo", label: "Ricevimento e festeggiamenti" },
               { time: "Pomeriggio", label: "Torta, brindisi e saluti finali" },
@@ -56,7 +56,7 @@ export default function Home() {
             timelineOnly: true,
             timelineVisibleCount: 4,
             timeline: [
-              { time: "TBD", label: "Celebrazione civile al Comune di Cervignano d'Adda" },
+              { time: "Da definire", label: "Celebrazione civile al Comune di Cervignano d'Adda" },
               { time: "Subito dopo", label: "Trasferimento verso Agriturismo Isolone" },
               { time: "Pranzo", label: "Ricevimento e festeggiamenti" },
               { time: "Pomeriggio", label: "Torta, brindisi e saluti finali" },
@@ -72,10 +72,10 @@ export default function Home() {
             kicker: "Celebrazione",
             title: "Comune di Cervignano d'Adda",
             description:
-              "La celebrazione civile si svolgerà presso il Comune di Cervignano d'Adda, in un momento intimo e significativo.",
+              "La celebrazione civile si svolgerà presso il Comune di Cervignano d'Adda. Sala da definire.",
             details: [
               "Indirizzo: Piazza del Municipio, 1, 26832 Cervignano d'Adda (LO)",
-              "In mattinata, orario ancora da definire",
+              "In mattinata, orario da definire",
             ],
           },
           {
@@ -84,7 +84,7 @@ export default function Home() {
             description:
               "Nei prossimi aggiornamenti condivideremo l'orario definitivo, i riferimenti per il parcheggio e le eventuali indicazioni per l'arrivo.",
             details: [
-              "Invito a presentarsi con un po' di anticipo",
+              "Invitiamo a presentarsi con un po' di anticipo",
               "Contatti rapidi disponibili nella sezione finale",
             ],
           },
@@ -101,7 +101,7 @@ export default function Home() {
               "Dopo la celebrazione ci sposteremo all'Agriturismo Isolone per il pranzo e i festeggiamenti.",
             details: [
               "Accoglienza subito dopo la cerimonia",
-              "Dettagli logistici in aggiornamento",
+              "Ampio parcheggio, e lunga pista di atterragio",
             ],
           },
           {
