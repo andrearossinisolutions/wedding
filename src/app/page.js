@@ -230,6 +230,7 @@ export default function Home() {
       </nav>
       {sections.map((section) => {
         const activeIndex = activeSlides[section.id] ?? 0;
+        const isSectionActive = activeSectionId === section.id;
         const baseUnits = section.slides.length * (section.hold ?? 1);
         const totalUnits = baseUnits + (section.endHold ?? 0);
         return (
@@ -249,14 +250,16 @@ export default function Home() {
             >
               {section.videoId ? (
                 <div className="story-video-layer" aria-hidden="true">
-                  <iframe
-                    className="story-video-bg-frame"
-                    src={`https://www.youtube-nocookie.com/embed/${section.videoId}?autoplay=1&mute=1&controls=0&disablekb=1&fs=0&loop=1&modestbranding=1&playsinline=1&rel=0&iv_load_policy=3&playlist=${section.videoId}&start=${section.videoStart}`}
-                    title="Wedding Story Background Video"
-                    allow="autoplay; encrypted-media; picture-in-picture"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    tabIndex={-1}
-                  />
+                  {isSectionActive ? (
+                    <iframe
+                      className="story-video-bg-frame"
+                      src={`https://www.youtube-nocookie.com/embed/${section.videoId}?autoplay=1&mute=1&controls=0&disablekb=1&fs=0&loop=1&modestbranding=1&playsinline=1&rel=0&iv_load_policy=3&playlist=${section.videoId}&start=${section.videoStart}`}
+                      title="Wedding Story Background Video"
+                      allow="autoplay; encrypted-media; picture-in-picture"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      tabIndex={-1}
+                    />
+                  ) : null}
                 </div>
               ) : null}
               <div className="parallax-overlay">
