@@ -19,14 +19,41 @@ export default function Home() {
           },
           {
             kicker: "Un Giorno Speciale",
-            title: "La Nostra Promessa",
-            description:
-              "Sarà una giornata pensata per stare insieme alle persone che amiamo di piu', tra emozioni sincere e momenti da ricordare.",
-            details: [
-              "Cerimonia e pranzo nella stessa giornata",
-              "Aggiorneremo presto gli orari e i dettagli logistici",
-            ],
             timelineOnly: true,
+            timelineVisibleCount: 1,
+            timeline: [
+              { time: "TBD", label: "Celebrazione civile al Comune di Cervignano d'Adda" },
+              { time: "Subito dopo", label: "Trasferimento verso Agriturismo Isolone" },
+              { time: "Pranzo", label: "Ricevimento e festeggiamenti" },
+              { time: "Pomeriggio", label: "Torta, brindisi e saluti finali" },
+            ],
+          },
+          {
+            kicker: "Un Giorno Speciale",
+            timelineOnly: true,
+            timelineVisibleCount: 2,
+            timeline: [
+              { time: "TBD", label: "Celebrazione civile al Comune di Cervignano d'Adda" },
+              { time: "Subito dopo", label: "Trasferimento verso Agriturismo Isolone" },
+              { time: "Pranzo", label: "Ricevimento e festeggiamenti" },
+              { time: "Pomeriggio", label: "Torta, brindisi e saluti finali" },
+            ],
+          },
+          {
+            kicker: "Un Giorno Speciale",
+            timelineOnly: true,
+            timelineVisibleCount: 3,
+            timeline: [
+              { time: "TBD", label: "Celebrazione civile al Comune di Cervignano d'Adda" },
+              { time: "Subito dopo", label: "Trasferimento verso Agriturismo Isolone" },
+              { time: "Pranzo", label: "Ricevimento e festeggiamenti" },
+              { time: "Pomeriggio", label: "Torta, brindisi e saluti finali" },
+            ],
+          },
+          {
+            kicker: "Un Giorno Speciale",
+            timelineOnly: true,
+            timelineVisibleCount: 4,
             timeline: [
               { time: "TBD", label: "Celebrazione civile al Comune di Cervignano d'Adda" },
               { time: "Subito dopo", label: "Trasferimento verso Agriturismo Isolone" },
@@ -230,7 +257,7 @@ export default function Home() {
               <div className="parallax-overlay">
                 {section.slides.map((slide, index) => (
                   <article
-                    key={`${section.id}-${slide.title}`}
+                    key={`${section.id}-${slide.title ?? slide.kicker ?? "slide"}-${index}`}
                     className={`content-shell one-slide ${index === activeIndex ? "is-active" : ""}`}
                   >
                     {!slide.timelineOnly ? (
@@ -250,12 +277,14 @@ export default function Home() {
                     {slide.timeline ? (
                       <div className="story-timeline-wrap">
                         <div className="story-timeline">
-                          {slide.timeline.map((step) => (
+                          {slide.timeline
+                            .slice(0, slide.timelineVisibleCount ?? slide.timeline.length)
+                            .map((step) => (
                             <div key={`${step.time}-${step.label}`} className="story-timeline-step">
                               <span className="story-time-pill">{step.time}</span>
                               <p>{step.label}</p>
                             </div>
-                          ))}
+                            ))}
                         </div>
                       </div>
                     ) : null}
