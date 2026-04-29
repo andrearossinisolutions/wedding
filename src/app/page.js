@@ -7,6 +7,7 @@ export default function Home() {
     () => [
       {
         id: "evento",
+        endHold: 1,
         background:
           "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1800&q=80",
         slides: [
@@ -184,8 +185,10 @@ export default function Home() {
 
         const rect = element.getBoundingClientRect();
         const viewportCenter = window.innerHeight * 0.5;
+        const baseUnits = section.slides.length * (section.hold ?? 1);
+        const activeSpan = Math.max(window.innerHeight * baseUnits, 1);
         const rawProgress = Math.min(
-          Math.max((viewportCenter - rect.top) / Math.max(rect.height, 1), 0),
+          Math.max((viewportCenter - rect.top) / activeSpan, 0),
           0.9999,
         );
         nextActive[section.id] = Math.floor(rawProgress * section.slides.length);
@@ -227,12 +230,14 @@ export default function Home() {
       </nav>
       {sections.map((section) => {
         const activeIndex = activeSlides[section.id] ?? 0;
+        const baseUnits = section.slides.length * (section.hold ?? 1);
+        const totalUnits = baseUnits + (section.endHold ?? 0);
         return (
           <section
             key={section.id}
             id={section.id}
             className="story-section"
-            style={{ height: `${section.slides.length * 100 * (section.hold ?? 1)}svh` }}
+            style={{ height: `${totalUnits * 100}svh` }}
           >
             <div
               className={`story-sticky ${section.videoId ? "has-video has-video-iframe" : ""}`}
