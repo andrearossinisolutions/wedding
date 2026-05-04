@@ -24,7 +24,7 @@ export default function Home() {
             timelineVisibleCount: 1,
             timeline: [
               { time: "Da definire", label: "Celebrazione civile al Comune di Cervignano d'Adda" },
-              { time: "Subito dopo", label: "Trasferimento verso Agriturismo Isolone" },
+              { time: "Subito dopo", label: /* "Trasferimento verso Agriturismo Isolone" */"Trasferimento verso luogo da confermare" },
               { time: "Pranzo", label: "Ricevimento e festeggiamenti" },
               { time: "Pomeriggio", label: "Torta, brindisi e saluti finali" },
             ],
@@ -35,7 +35,7 @@ export default function Home() {
             timelineVisibleCount: 2,
             timeline: [
               { time: "Da definire", label: "Celebrazione civile al Comune di Cervignano d'Adda" },
-              { time: "Subito dopo", label: "Trasferimento verso Agriturismo Isolone" },
+              { time: "Subito dopo", label: /* "Trasferimento verso Agriturismo Isolone" */"Trasferimento verso luogo da confermare" },
               { time: "Pranzo", label: "Ricevimento e festeggiamenti" },
               { time: "Pomeriggio", label: "Torta, brindisi e saluti finali" },
             ],
@@ -46,7 +46,7 @@ export default function Home() {
             timelineVisibleCount: 3,
             timeline: [
               { time: "Da definire", label: "Celebrazione civile al Comune di Cervignano d'Adda" },
-              { time: "Subito dopo", label: "Trasferimento verso Agriturismo Isolone" },
+              { time: "Subito dopo", label: /* "Trasferimento verso Agriturismo Isolone" */"Trasferimento verso luogo da confermare" },
               { time: "Pranzo", label: "Ricevimento e festeggiamenti" },
               { time: "Pomeriggio", label: "Torta, brindisi e saluti finali" },
             ],
@@ -57,7 +57,7 @@ export default function Home() {
             timelineVisibleCount: 4,
             timeline: [
               { time: "Da definire", label: "Celebrazione civile al Comune di Cervignano d'Adda" },
-              { time: "Subito dopo", label: "Trasferimento verso Agriturismo Isolone" },
+              { time: "Subito dopo", label: /* "Trasferimento verso Agriturismo Isolone" */"Trasferimento verso luogo da confermare" },
               { time: "Pranzo", label: "Ricevimento e festeggiamenti" },
               { time: "Pomeriggio", label: "Torta, brindisi e saluti finali" },
             ],
@@ -96,19 +96,22 @@ export default function Home() {
         slides: [
           {
             kicker: "Pranzo",
-            title: "Agriturismo Isolone",
+            // title: "Agriturismo Isolone",
+            title: "Da confermare",
             description:
-              "Dopo la celebrazione ci sposteremo all'Agriturismo Isolone per il pranzo e i festeggiamenti.",
+              // "Dopo la celebrazione ci sposteremo all'Agriturismo Isolone per il pranzo e i festeggiamenti.",
+              "Dopo la celebrazione ci sposteremo per il pranzo e i festeggiamenti.",
             details: [
               "Accoglienza subito dopo la cerimonia",
-              "Ampio parcheggio, e lunga pista di atterragio",
+              // "Ampio parcheggio, e lunga pista di atterragio",
             ],
           },
           {
             kicker: "Atmosfera",
             title: "Convivialita e Festa",
             description:
-              "Ci aspetta un pranzo in un ambiente rustico ed affascinante, con tempi rilassati per brindare, stare insieme e goderci la giornata.",
+              // "Ci aspetta un pranzo in un ambiente rustico ed affascinante, con tempi rilassati per brindare, stare insieme e goderci la giornata.",
+              "Ci aspetta un pranzo con tempi rilassati per brindare, stare insieme e goderci la giornata.",
             details: [
               "Spazi interni ed esterni a disposizione",
               "Momenti dedicati a foto e saluti",
@@ -124,10 +127,10 @@ export default function Home() {
             kicker: "Info Ricevimento",
             title: "Un Pomeriggio Insieme",
             description:
-              "Dopo il pranzo continueremo i festeggiamenti con torta, brindisi e musica in agriturismo.",
+              "Dopo il pranzo continueremo i festeggiamenti con torta e brindisi.",
             details: [
-              "Menu con opzioni anche vegetariane",
-              "Ampio parcheggio disponibile",
+              "Menu da confermare",
+              // "Ampio parcheggio disponibile",
             ],
           },
           {
@@ -145,9 +148,10 @@ export default function Home() {
       },
       {
         id: "final-story",
-        videoId: "ejVEg8Xoqyc",
-        videoStart: 584,
-        background: "/isolone-3.jpg",
+        // videoId: "ejVEg8Xoqyc",
+        // videoStart: 584,
+        // background: "/isolone-3.jpg",
+        background: "/isolone-1.jpg",
         hold: 1.8,
         slides: [
           {
@@ -156,8 +160,8 @@ export default function Home() {
             description:
               "Grazie per condividere con noi questo giorno speciale. Non vediamo l'ora di arrivare e festeggiare insieme a te.",
             details: [
-              "RSVP e dettagli finali in aggiornamento",
-              "A presto, con affetto",
+              "Dettagli finali in aggiornamento",
+              "A presto, con affetto, Andrea e Veronica",
             ],
           },
         ],
@@ -384,26 +388,26 @@ export default function Home() {
                 </div>
               </div>
               <div className="overflow-hidden rounded-xl border border-[#59453426] bg-white/85 shadow-[0_10px_30px_rgba(89,69,52,0.08)]">
-                <iframe
+                {/* <iframe
                   className="h-56 w-full border-0"
                   src="https://www.google.com/maps?q=Agriturismo+Isolone&z=12&output=embed"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   title="Mappa Agriturismo Isolone"
-                />
+                /> */}
                 <div className="p-4">
-                  <h3 className="mb-2 text-xl font-medium">Agriturismo Isolone</h3>
+                  <h3 className="mb-2 text-xl font-medium">{/* Agriturismo Isolone */}Ricevimento</h3>
                   <p className="mb-3 text-base sm:text-lg">
-                    Cascina San Benedetto, 26865 San Rocco al Porto (LO)
+                    {/* Cascina San Benedetto, 26865 San Rocco al Porto (LO) */}Da confermare, indicazioni dettagliate in arrivo
                   </p>
-                  <a
+                  {/* <a
                     className="font-semibold text-[#594534] underline-offset-2 hover:underline"
                     href="https://www.google.com/maps/search/?api=1&query=Agriturismo%20Isolone"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     Apri su Google Maps
-                  </a>
+                  </a> */}
                 </div>
               </div>
             </div>
