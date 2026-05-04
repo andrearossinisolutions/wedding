@@ -263,7 +263,7 @@ export default function Home() {
             key={section.id}
             id={section.id}
             className="story-section"
-            style={{ height: `${totalUnits * 100}svh` }}
+            style={{ height: `${totalUnits * 100}vh` }}
           >
             <div
               className={`story-sticky ${section.videoId ? "has-video has-video-iframe" : ""} ${isSectionActive ? "is-active-story" : ""}`}
