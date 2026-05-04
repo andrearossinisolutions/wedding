@@ -113,6 +113,8 @@ body {
   opacity: 1;
   filter: blur(0);
   transform: translateY(0) scale(1);
+  pointer-events: auto;
+  z-index: 2;
 }
 
 .content-shell h1 {
@@ -143,6 +145,16 @@ body {
 .content-shell li {
   margin-bottom: 0.55rem;
   font-size: clamp(0.98rem, 2vw, 1.1rem);
+}
+
+.content-shell a {
+  color: inherit;
+  cursor: pointer;
+  pointer-events: auto;
+  position: relative;
+  z-index: 3;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
 }
 
 .story-timeline-wrap {
