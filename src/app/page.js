@@ -15,7 +15,7 @@ export default function Home() {
             kicker: "Save The Date",
             title: "Il Nostro Matrimonio",
             description:
-              "Con grande gioia ti invitiamo a condividere con noi una giornata speciale di festa, affetto e felicita.",
+              "Con grande gioia ti invitiamo a condividere con noi una giornata speciale di festa, affetto e felicità.",
             details: ["Data: 06 giugno 2026", "Programma completo in arrivo"],
           },
           {
@@ -23,10 +23,10 @@ export default function Home() {
             timelineOnly: true,
             timelineVisibleCount: 1,
             timeline: [
-              { time: "Da definire", label: "Celebrazione civile al Comune di Cervignano d'Adda" },
-              { time: "Subito dopo", label: /* "Trasferimento verso Agriturismo Isolone" */"Trasferimento verso luogo da confermare" },
-              { time: "Pranzo", label: "Ricevimento e festeggiamenti" },
-              { time: "Pomeriggio", label: "Torta, brindisi e saluti finali" },
+              { time: "Orario da definire", label: "Celebrazione civile al Comune di Cervignano d'Adda" },
+              { time: "Dopo la celebrazione", label: /* "Trasferimento verso Agriturismo Isolone" */"Trasferimento verso luogo da confermare" },
+              { time: "A pranzo", label: "Ricevimento e festeggiamenti" },
+              { time: "Nel pomeriggio", label: "Torta, brindisi e saluti finali" },
             ],
           },
           {
@@ -34,10 +34,10 @@ export default function Home() {
             timelineOnly: true,
             timelineVisibleCount: 2,
             timeline: [
-              { time: "Da definire", label: "Celebrazione civile al Comune di Cervignano d'Adda" },
-              { time: "Subito dopo", label: /* "Trasferimento verso Agriturismo Isolone" */"Trasferimento verso luogo da confermare" },
-              { time: "Pranzo", label: "Ricevimento e festeggiamenti" },
-              { time: "Pomeriggio", label: "Torta, brindisi e saluti finali" },
+              { time: "Orario da definire", label: "Celebrazione civile al Comune di Cervignano d'Adda" },
+              { time: "Dopo la celebrazione", label: /* "Trasferimento verso Agriturismo Isolone" */"Trasferimento verso luogo da confermare" },
+              { time: "A pranzo", label: "Ricevimento e festeggiamenti" },
+              { time: "Nel pomeriggio", label: "Torta, brindisi e saluti finali" },
             ],
           },
           {
@@ -45,10 +45,10 @@ export default function Home() {
             timelineOnly: true,
             timelineVisibleCount: 3,
             timeline: [
-              { time: "Da definire", label: "Celebrazione civile al Comune di Cervignano d'Adda" },
-              { time: "Subito dopo", label: /* "Trasferimento verso Agriturismo Isolone" */"Trasferimento verso luogo da confermare" },
-              { time: "Pranzo", label: "Ricevimento e festeggiamenti" },
-              { time: "Pomeriggio", label: "Torta, brindisi e saluti finali" },
+              { time: "Orario da definire", label: "Celebrazione civile al Comune di Cervignano d'Adda" },
+              { time: "Dopo la celebrazione", label: /* "Trasferimento verso Agriturismo Isolone" */"Trasferimento verso luogo da confermare" },
+              { time: "A pranzo", label: "Ricevimento e festeggiamenti" },
+              { time: "Nel pomeriggio", label: "Torta, brindisi e saluti finali" },
             ],
           },
           {
@@ -56,10 +56,10 @@ export default function Home() {
             timelineOnly: true,
             timelineVisibleCount: 4,
             timeline: [
-              { time: "Da definire", label: "Celebrazione civile al Comune di Cervignano d'Adda" },
-              { time: "Subito dopo", label: /* "Trasferimento verso Agriturismo Isolone" */"Trasferimento verso luogo da confermare" },
-              { time: "Pranzo", label: "Ricevimento e festeggiamenti" },
-              { time: "Pomeriggio", label: "Torta, brindisi e saluti finali" },
+              { time: "Orario da definire", label: "Celebrazione civile al Comune di Cervignano d'Adda" },
+              { time: "Dopo la celebrazione", label: /* "Trasferimento verso Agriturismo Isolone" */"Trasferimento verso luogo da confermare" },
+              { time: "A pranzo", label: "Ricevimento e festeggiamenti" },
+              { time: "Nel pomeriggio", label: "Torta, brindisi e saluti finali" },
             ],
           },
         ],
