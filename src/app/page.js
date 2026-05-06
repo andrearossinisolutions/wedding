@@ -142,7 +142,10 @@ export default function Home() {
               "Conferma presenza (RSVP) il prima possibile",
               "Segnalateci qualsiasi esigenza alimentare",
             ],
-            tel: ["347 2181 696", "392 178 2426"],
+            contacts: [
+              { name: "Veronica", tel: "347 2181 696" },
+              { name: "Andrea", tel: "392 178 2426" },
+            ],
           },
         ],
       },
@@ -322,18 +325,19 @@ export default function Home() {
                           {slide.details.map((detail) => (
                             <li key={detail}>{detail}</li>
                           ))}
-                          {slide.tel?.length ? (
+                          {slide.contacts?.length ? (
                             <li>
                               Contatti organizzativi:{" "}
-                              {slide.tel.map((phone, phoneIndex) => (
-                                <span key={phone}>
+                              {slide.contacts.map((contact, contactIndex) => (
+                                <span key={`${contact.name}-${contact.tel}`}>
+                                  {contact.name}:{" "}
                                   <a
-                                    href={`tel:${phone.replace(/\s+/g, "")}`}
+                                    href={`tel:${contact.tel.replace(/\s+/g, "")}`}
                                     className="font-semibold underline underline-offset-2"
                                   >
-                                    {phone}
+                                    {contact.tel}
                                   </a>
-                                  {phoneIndex < slide.tel.length - 1 ? " / " : ""}
+                                  {contactIndex < slide.contacts.length - 1 ? " / " : ""}
                                 </span>
                               ))}
                             </li>
@@ -432,10 +436,10 @@ export default function Home() {
         <div className="mx-auto mt-14 w-full max-w-3xl text-center">
           <p className="text-base sm:text-lg">
             Per informazioni sui servizi e i pacchetti disponibili, non esitare a contattarci.<br />
-            Andrea: <a href="tel:347 2181 696" className="font-semibold text-[#594534] underline-offset-2 hover:underline">
-              347 2181 696
-            </a> / Veronica: <a href="tel:392 178 2426" className="font-semibold text-[#594534] underline-offset-2 hover:underline">
+            Veronica: <a href="tel:392 178 2426" className="font-semibold text-[#594534] underline-offset-2 hover:underline">
               392 178 2426
+            </a> / Andrea: <a href="tel:347 2181 696" className="font-semibold text-[#594534] underline-offset-2 hover:underline">
+              347 2181 696
             </a>
           </p>
         </div>
